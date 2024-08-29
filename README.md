@@ -1,5 +1,5 @@
 # wireGuard-easy-abrikost
-I am trying to develop the simplest installation process WireGuard for Ubuntu.
+I am trying to develop the simplest installation process WireGuard on VPS Server.
 
 
 
