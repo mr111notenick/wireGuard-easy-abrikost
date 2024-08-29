@@ -1,5 +1,8 @@
 # wireGuard-easy-abrikost
-I am trying to develop the simplest installation process WireGuard on VPS Server.
+I am trying to develop the simplest installation process WireGuard on VPS Server only Ubuntu support.
+Comming soon
+Arch linux support
+Web-version like wg-easy(with support QR-code and Web-donload)
 
 
 
