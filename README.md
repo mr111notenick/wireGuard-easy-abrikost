@@ -6,7 +6,7 @@ I am trying to develop the simplest installation process WireGuard on VPS Server
 
 
 
-Getting Start.
+# Getting Start.
 1) Download the script on your server
 2) Change mode executable
 ```bash
