@@ -26,7 +26,7 @@ scp YourUserName@your.ip.adress:/etc/wireguard/client1 /home/$USER/
 scp YourUserName@your.ip.adress:/etc/wireguard/client1 C:\
 ```
 On windows you need 
--Download wireguard app client. 
+- Download wireguard app client. 
   Here
 https://download.wireguard.com/windows-client/
 - After install click on the button "Add Tunnel"
