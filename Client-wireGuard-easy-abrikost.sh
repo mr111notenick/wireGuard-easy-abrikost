@@ -1,39 +1,39 @@
 #!/bin/bash
 
-# Запрашиваем номер клиента
-echo "Введите номер клиента (например, 1 для client1.conf):"
+# Ask clients number
+echo "What number of client (for example, 1 for client1.conf):"
 read CLIENT_NUMBER
 
-# Переменные
+# Variable
 CLIENT_CONFIG="/home/$USER/client${CLIENT_NUMBER}.conf"
 
-echo "1. Обновляем пакеты..."
+echo "1. Update Packeges..."
 sudo apt update && sudo apt upgrade -y
-echo "Пакеты обновлены."
+echo "Pakeges updated."
 
-echo "2. Устанавливаем WireGuard..."
+echo "2. Install WireGuard..."
 sudo apt install -y wireguard
-echo "WireGuard установлен."
+echo "WireGuard installed."
 
-# Проверяем наличие конфигурационного файла
+# Check config wile in /home/$USER
 if [ -f "$CLIENT_CONFIG" ]; then
-    echo "3. Конфигурационный файл найден. Копируем его в /etc/wireguard/..."
+    echo "3. Config file was detected. We are copy this file in /etc/wireguard/..."
     sudo cp "$CLIENT_CONFIG" /etc/wireguard/wg0.conf
 else
-    echo "Ошибка: Конфигурационный файл $CLIENT_CONFIG не найден."
+    echo "Error. Config file $CLIENT_CONFIG not detected."
     exit 1
 fi
 
-echo "4. Устанавливаем права доступа к конфигурационному файлу..."
+echo "4. Change mode for more secure for wireguard config..."
 sudo chmod 600 /etc/wireguard/wg0.conf
-echo "Права доступа установлены."
+echo "Mode was changed."
 
-echo "5. Активируем интерфейс WireGuard..."
+echo "5. Activating WireGuard interface..."
 sudo wg-quick up wg0
-echo "Интерфейс WireGuard активирован."
+echo "Interface wg0 was activated."
 
-echo "6. Проверяем статус соединения..."
+echo "6. If the client avaliable?..."
 sudo wg
 sudo systemctl status wg-quick@wg0.service
 
-echo "Клиент WireGuard успешно подключен."
+echo "Client WireGuard was successfully connected. Take a nice day"
