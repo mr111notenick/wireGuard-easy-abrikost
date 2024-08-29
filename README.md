@@ -1,2 +1,27 @@
 # wireGuard-easy-abrikost
 I am trying to develop the simplest installation process WireGuard for Ubuntu.
+
+
+
+Getting Start.
+1) Download the script on your server
+2) Change mode executable
+```bash
+sudo chmod +x wireGuard-easy-abrikost.sh
+```
+3) All done. 5 Client already created. The config files in the /etc/wireguard/. Named client1...client5
+```bash
+sudo cd /etc/wireguard
+```
+4) You can copy the text in the client*.conf like this.
+```bash
+cat client1.conf
+```
+5) Or you can download config from you server.
+```bash
+scp YourUserName@your.ip.adress:/etc/wireguard/client1 /path/on/your/client
+#
+#if you have Windows client use this. You will save the client1.conf directly in disk C.
+scp YourUserName@your.ip.adress:/etc/wireguard/client1 C:\
+
+```
