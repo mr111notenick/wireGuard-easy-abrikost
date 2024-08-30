@@ -1,0 +1,33 @@
+#!/bin/bash
+
+echo "1. Stopping the WireGuard service..."
+systemctl stop wg-quick@wg0.service
+echo "WireGuard service stopped."
+
+echo "2. Disabling the WireGuard service..."
+systemctl disable wg-quick@wg0.service
+echo "WireGuard service disabled."
+
+echo "3. Removing WireGuard configuration files..."
+rm -f /etc/wireguard/wg0.conf
+rm -f /etc/wireguard/privatekey
+rm -f /etc/wireguard/publickey
+echo "WireGuard configuration files removed."
+
+echo "4. Uninstalling WireGuard..."
+apt-get remove -y wireguard
+apt-get autoremove -y
+echo "WireGuard uninstalled."
+
+echo "5. Removing IP forwarding settings..."
+sed -i '/net.ipv4.ip_forward=1/d' /etc/sysctl.conf
+sysctl -p
+echo "IP forwarding settings removed."
+
+echo "6. Removing any iptables rules added by WireGuard..."
+iptables -D FORWARD -i wg0 -j ACCEPT
+iptables -D FORWARD -o wg0 -j ACCEPT
+iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+echo "iptables rules removed."
+
+echo "WireGuard server removal complete!"
